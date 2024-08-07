@@ -36,6 +36,10 @@ const orders = [
   }
 ];
 
+app.get("/", (req,res)=>{
+  res.send('{"response":"deliveryconfirmation success"}')
+})
+
 app.post('/deliveryConfirmation', (req, res) => {
   const { orderId } = req.body;
 
