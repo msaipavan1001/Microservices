@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentorder-deployment
+  labels:
+    app: paymentorder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paymentorder
+  template:
+    metadata:
+      labels:
+        app: paymentorder 
+    spec:
+      containers:
+      - name: nodeserver
+        image: saipavan1001/paymentorder:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 4006
+        volumeMounts:
+        - name: log-volume
+          mountPath: /var/log/paymentorder
+      volumes:
+      - name: log-volume
+        emptyDir: {}
